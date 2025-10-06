@@ -2,7 +2,6 @@ package com.project.demo.rest.game;
 
 import com.project.demo.logic.entity.game.Game;
 import com.project.demo.logic.entity.game.GameRepository;
-import com.project.demo.logic.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +16,14 @@ public class GameRestController {
     private GameRepository gameRepository;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE', 'USER')")
     public List<Game> getAllGames(){
         return gameRepository.findAll();
     }
 
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
     public Game updateGame(@PathVariable Long id, @RequestBody Game game) {
         return gameRepository.findById(id)
                 .map(existingGame -> {
@@ -41,12 +40,12 @@ public class GameRestController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
     public Game addGame(@RequestBody Game game) {
         return  gameRepository.save(game);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
     @DeleteMapping("/{id}")
     public void deleteGame (@PathVariable Long id) {
         gameRepository.deleteById(id);

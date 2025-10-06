@@ -25,14 +25,14 @@ public class RoleSeeder implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     private void loadRoles() {
-        RoleEnum[] roleNames = new RoleEnum[] { RoleEnum.USER, RoleEnum.ADMIN, RoleEnum.SUPER_ADMIN };
+        RoleEnum[] roleNames = new RoleEnum[] { RoleEnum.USER, RoleEnum.SUPER_ADMIN_ROLE };
         Map<RoleEnum, String> roleDescriptionMap = Map.of(
                 RoleEnum.USER, "Default user role",
-                RoleEnum.ADMIN, "Administrator role",
-                RoleEnum.SUPER_ADMIN, "Super Administrator role"
+                RoleEnum.SUPER_ADMIN_ROLE, "Super Administrator role"
         );
 
         Arrays.stream(roleNames).forEach((roleName) -> {
+            System.out.println("Loading role: " + roleName);
             Optional<Role> optionalRole = roleRepository.findByName(roleName);
 
             optionalRole.ifPresentOrElse(System.out::println, () -> {

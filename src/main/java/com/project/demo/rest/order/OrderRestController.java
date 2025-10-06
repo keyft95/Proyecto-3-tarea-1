@@ -118,7 +118,7 @@ public class OrderRestController {
     }
 
     @DeleteMapping("/{orderId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
     public ResponseEntity<?> deleteOrder(@PathVariable Long orderId, HttpServletRequest request) {
         Optional<Order> foundOrder = orderRepository.findById(orderId);
         if(foundOrder.isPresent()) {

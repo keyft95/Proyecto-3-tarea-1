@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -92,7 +91,7 @@ public class PreferenceListRestController {
     }
 
     @DeleteMapping("/{Id}")
-    @PreAuthorize("isAuthenticated() && hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+    @PreAuthorize("isAuthenticated() && hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
     public ResponseEntity<?> deletePreferenceList(@PathVariable Long Id, HttpServletRequest request) {
         Optional<PreferenceList> foundPrefereceList = preferenceListRepository.findById(Id);
         if(foundPrefereceList.isPresent()) {

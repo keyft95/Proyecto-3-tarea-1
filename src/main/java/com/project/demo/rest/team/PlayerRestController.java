@@ -77,7 +77,7 @@ public class PlayerRestController {
     }
 
     @DeleteMapping("/{playerId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
     public ResponseEntity<?> deletePlayer(@PathVariable Long playerId, HttpServletRequest request) {
         Optional<Player> foundPlayer = playerRepository.findById(playerId);
         if (foundPlayer.isPresent()) {
