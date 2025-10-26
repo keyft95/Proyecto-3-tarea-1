@@ -77,7 +77,7 @@ public class TeamRestController {
     }
 
     @DeleteMapping("/{teamId}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<?> deleteTeam(@PathVariable Long teamId, HttpServletRequest request) {
         Optional<Team> foundTeam = teamRepository.findById(teamId);
         if (foundTeam.isPresent()) {

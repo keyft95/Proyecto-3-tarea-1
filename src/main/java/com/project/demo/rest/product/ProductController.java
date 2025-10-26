@@ -30,7 +30,7 @@ public class ProductController {
     private CategoryRepository categoryRepository;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('USER', 'SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('USER', 'SUPER_ADMIN')")
     public ResponseEntity<?> getAllProducts(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
@@ -48,7 +48,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody Product product, HttpServletRequest request) {
         Optional<Product> foundProduct = productRepository.findById(id);
         if (foundProduct.isPresent()) {
@@ -81,7 +81,7 @@ public class ProductController {
         }
     }
 
-    @PreAuthorize("hasAnyRole('SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteProduct (@PathVariable Long id) {
         productRepository.deleteById(id);

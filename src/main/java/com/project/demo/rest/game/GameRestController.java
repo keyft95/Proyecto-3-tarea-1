@@ -16,14 +16,14 @@ public class GameRestController {
     private GameRepository gameRepository;
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN', 'USER')")
     public List<Game> getAllGames(){
         return gameRepository.findAll();
     }
 
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public Game updateGame(@PathVariable Long id, @RequestBody Game game) {
         return gameRepository.findById(id)
                 .map(existingGame -> {
@@ -40,12 +40,12 @@ public class GameRestController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public Game addGame(@RequestBody Game game) {
         return  gameRepository.save(game);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteGame (@PathVariable Long id) {
         gameRepository.deleteById(id);

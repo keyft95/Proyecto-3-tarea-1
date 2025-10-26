@@ -15,7 +15,7 @@ public class Product {
     private int stockQuantity;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @JoinColumn(name = "category_id",referencedColumnName = "id", nullable = false)
     private Category category;
 
     public Long getId() {

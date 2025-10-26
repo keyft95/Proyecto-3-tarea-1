@@ -19,7 +19,7 @@ public class Category {
     private String description;
 
     @JsonIgnoreProperties("category")
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Product> products;
 
     public long getId() {

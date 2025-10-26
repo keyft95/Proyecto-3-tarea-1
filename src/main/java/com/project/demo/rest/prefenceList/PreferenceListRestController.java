@@ -91,7 +91,7 @@ public class PreferenceListRestController {
     }
 
     @DeleteMapping("/{Id}")
-    @PreAuthorize("isAuthenticated() && hasAnyRole('ADMIN', 'SUPER_ADMIN_ROLE')")
+    @PreAuthorize("isAuthenticated() && hasAnyRole('ADMIN', 'SUPER_ADMIN')")
     public ResponseEntity<?> deletePreferenceList(@PathVariable Long Id, HttpServletRequest request) {
         Optional<PreferenceList> foundPrefereceList = preferenceListRepository.findById(Id);
         if(foundPrefereceList.isPresent()) {
