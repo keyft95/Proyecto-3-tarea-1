@@ -1,10 +1,12 @@
 package com.project.demo.logic.entity.category;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.demo.logic.entity.product.Product;
 import jakarta.persistence.*;
 
 import java.util.List;
+
 
 @Table(name = "category")
 @Entity
@@ -16,7 +18,7 @@ public class Category {
     private String name;
     private String description;
 
-    @JsonIgnore
+    @JsonIgnoreProperties("category")
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products;
 
